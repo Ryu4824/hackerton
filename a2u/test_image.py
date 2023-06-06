@@ -36,21 +36,23 @@ def test(args):
     print(f"model loaded: {args.checkpoint}")
     
     os.makedirs(args.output_dir, exist_ok=True)
+    #예외 처리
+    #if os.path.splitext(image_name)[-1].lower() not in [".jpg", ".png", ".bmp", ".tiff"]:
+    #    continue
 
-    for image_name in sorted(os.listdir(args.input_dir)):
-        if os.path.splitext(image_name)[-1].lower() not in [".jpg", ".png", ".bmp", ".tiff"]:
-            continue
-            
-        image = load_image(os.path.join(args.input_dir, image_name), args.x32)
+    image_name = args.img_name.name
 
-        with torch.no_grad():
-            image = to_tensor(image).unsqueeze(0) * 2 - 1
-            out = net(image.to(device), args.upsample_align).cpu()
-            out = out.squeeze(0).clip(-1, 1) * 0.5 + 0.5
-            out = to_pil_image(out)
+    image = load_image(os.path.join(args.input_dir, image_name), args.x32)
 
-        out.save(os.path.join(args.output_dir, image_name))
-        print(f"image saved: {image_name}")
+    with torch.no_grad():
+        image = to_tensor(image).unsqueeze(0) * 2 - 1
+        out = net(image.to(device), args.upsample_align).cpu()
+        out = out.squeeze(0).clip(-1, 1) * 0.5 + 0.5
+        out = to_pil_image(out)
+
+    out.save(os.path.join(args.output_dir, image_name))
+    print(f"image saved: {image_name}")
+
 
 
 # if __name__ == '__main__':

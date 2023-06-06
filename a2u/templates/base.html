@@ -12,6 +12,12 @@
     <h1>Hello, World!</h1>
     <img src="{% static 'results/hi.jpg' %}" alt="Hi!">
     <!-- <script src="{% static 'js/script.js' %}"></script> -->
+
+    <form method="post" enctype="multipart/form-data" action="{% url 'image' %}">
+        {% csrf_token %}
+        <input type="file" name="name">
+        <button type="submit">Upload</button>
+    </form>
 </body>
 
 </html>
