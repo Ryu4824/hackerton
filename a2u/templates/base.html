@@ -4,20 +4,27 @@
 <html>
 
 <head>
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <meta charset="utf-8">
+    <title id="title">A2U</title>
 </head>
 
 <body>
-    <!-- HTML 내용 -->
-    <h1>Hello, World!</h1>
-    <img src="{% static 'results/hi.jpg' %}" alt="Hi!">
-    <!-- <script src="{% static 'js/script.js' %}"></script> -->
-
-    <form method="post" enctype="multipart/form-data" action="{% url 'image' %}">
-        {% csrf_token %}
-        <input type="file" name="name">
-        <button type="submit">Upload</button>
-    </form>
+    <div id="container">
+        <div class="padding-box"></div>
+        <img id="logo" src="{% static 'img/logo.png' %}" alt="A2U">
+        <form method="post" enctype="multipart/form-data" action="{% url 'image' %}">
+            {% csrf_token %}
+            <input type="file" name="name">
+            <button type="submit">Upload</button>
+        </form>
+        <div class="preview-container" onclick="flipPreview(this)">
+            <img class="preview preview-front" src="{% static 'inputs/emma.png' %}" alt="front">
+            <img class="preview preview-back" src="{% static 'results/emma.png' %}" alt="back">
+        </div>
+        <div class="padding-box"></div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>
