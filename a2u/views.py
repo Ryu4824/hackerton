@@ -28,5 +28,5 @@ def image(request):
         "upsample_align" : False,
     }
     test(dict_to_class(args, "args"))
-    return HttpResponse("Image Complete")
+    return HttpResponse(file_name.name)
 
