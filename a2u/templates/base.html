@@ -16,7 +16,7 @@
         <img id="logo" src="{% static 'img/logo.png' %}" alt="A2U">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="file" name="name" id="imageInput">
+            <input type="file" name="name" id="imageInput" accept="image/*">
             <input type="button" value="Upload" onclick="imageUpload()">
         </form>
         <div class="preview-container" onclick="flipPreview(this)">
@@ -27,7 +27,6 @@
         <div class="padding-box"></div>
     </div>
     <script src="{% static 'js/script.js' %}"></script>
-
 </body>
 
 </html>
